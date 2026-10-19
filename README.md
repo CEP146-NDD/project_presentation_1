@@ -6,7 +6,7 @@
 | Indra Nara Rudianto| 108373267 |
 | Jericho Untalasco | 105898266 |
 | Harrison Kang | 111442265 |
-| Mohamed | 115455263 |
+| Mohamed Ali | 115455263 |
 
 ## Topic Summary
 In September 2026, Meta launched **Muse**, a personal AI agent that works on a user's behalf across the apps they use every day, instead of only answering questions like a chatbot. It runs on a dedicated cloud computer called Muse Secure VM, with protections such as a separate Sentinel security agent, secure credential storage, and one-time-use payment cards. 
