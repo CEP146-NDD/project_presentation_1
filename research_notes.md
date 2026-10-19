@@ -1,33 +1,43 @@
 # Research Notes
 
 ## Topic
-Investigation of Meta's personal AI agent 'Muse' and a comparative analysis of its features against major AI tools (ChatGPT, Gemini, OpenClaw).
+Investigation of Meta's personal AI agent 'Muse' (and Muse Code), focusing specifically on software development workflows, terminal automation, and a developer-centric comparison against major AI agent tools (ChatGPT, Gemini, OpenClaw).
 
-## Key Facts
+## Key Facts: Muse for Software Engineering
 
-### Muse (Meta)
-* **Product Overview:** Meta's personal AI agent, launched on September 8, 2026, in the US and Canada. It is available on the web (muse.ai), as well as through iOS, Android, and Mac apps. Expansion into regions like Europe has been delayed due to strict regulatory compliance required for AI products handling personal data.
-* **Model & Pricing:** Powered by Muse Spark 1.3, part of Meta's Muse model family. The more capable sibling, 'Muse Wonder' (announced October 12, 2026), runs on premium paid plans, which include a $50/month "Muse Code" subscription and API usage costs ($4 per 1 million input tokens / $20 per 1 million output tokens).
-* **How It Runs:** Instead of a simple chat interface, Muse assigns every user their own dedicated, persistent computer. This is an independent Linux machine equipped with a real browser, terminal, and filesystem that securely stores the agent's memory and maintains state between conversations.
-* **Core Capabilities:**
-  * **Proactive Design:** Runs scheduled background work (e.g., a 7 AM briefing) and delegates multi-step tasks to subagents that continue working while the user is away.
-  * **Live Web Browsing:** Live web browsing (including securely maintaining active sign-ins to websites using its dedicated machine), code execution, and file management.
-  * **Integrations:** Connectors to external services like Gmail, Google Calendar, and Notion.
-* **User Interaction:** Retains a persistent memory of user instructions and joint activities to eliminate repetitive explanations. To ensure safety, it always requests user confirmation before executing actions that are difficult to undo. The default name is 'Muse', but it can be changed at any time.
+### Core Developer Architecture & Capabilities
+* **Terminal-First & Persistent Dev Sandbox:** Rather than being a simple chat interface, Muse provides each developer with a dedicated, persistent Linux machine equipped with a bash shell, real browser, terminal execution tools, and filesystem. Developers run `muse` directly inside their project directory to plan, execute, build, and test software.
+* **Isolated Git Worktrees & Subagents:** Handles complex multi-file engineering tasks by delegating sub-tasks across persistent background subagents working in parallel. Each agent operates inside its own isolated git worktree (`../wt/agent-1`), preventing file clobbering or branch conflicts before code review and merging.
+* **Model Engine & Context Window:** Powered by Muse Spark 1.3 and Meta's frontier 'Muse Wonder' models (announced October 2026), featuring a 1-million-token context window that can digest entire code repositories. Incorporates "Active Focus" and "Active Memory" to handle long-running refactoring, bug fixing, and test failure resolution over extended sessions.
+* **Developer Pricing & Subscriptions:** Accessible via standard API rates ($4 / $20 per 1M tokens) or flat-rate "Muse Code" developer subscriptions ($50/mo Power Plan or $200/mo Maximum Plan), which unlock access to the higher-reasoning "Muse Wonder Full" model.
+* **DevOps & Safety Guardrails:** Connects with GitHub, terminal test harnesses, and external services (e.g., Notion, Gmail). Requires explicit user confirmation before running high-stakes commands (e.g., executing main branch merges or production deployments).
 
-## Comparison
+## Comparison: Developer & Workflow Perspective
 
-### ChatGPT (OpenAI)
-* **Features:** The broadest all-rounder supporting chat, voice, vision, image and video generation (Sora), browsing, and Deep Research. Pricing tiers include Free, Plus ($20/mo), and Pro ($200/mo).
-* **Agent Capabilities:** Evolved from Operator into "agent mode" and now "Work" mode. For complex tasks, it gets assigned its own virtual computer with a browser and terminal. However, unlike Muse's dedicated and always-on Linux machine, ChatGPT's environment is dynamically spun up for specific multi-step tasks.
-* **Other Details:** Offers connectors for Gmail, Drive, Notion, and GitHub, along with persistent memory and custom GPTs. It remains fundamentally a chatbot first and an agent second.
+*(Focused strictly on coding capabilities, execution environments, and developer workflows rather than general consumer features)*
 
-### Gemini (Google)
-* **Features:** Boasts the deepest integration with Google Workspace (Gmail, Drive, Docs, Calendar) with over 1 billion monthly users.
-* **Agent Capabilities:** The "Gemini agent" was announced on October 8, 2026. It is a universal work agent driven by "objectives" rather than simple instructions. It can process long-running, multi-step jobs and intelligently routes tasks across both Google's Gemini models and Anthropic's Claude models.
-* **Enterprise Integration & Cost:** Features "coworker agents" that act under their own identity. Each coworker agent receives a functional Workspace account with an `@agents.company.com` email address, calendar, Drive storage, and a directory entry. Every action is logged to an audit trail attributed directly to the agent. While currently in private preview with no published standalone price, reports indicate there is no additional charge for organizations where Gemini Enterprise is already available.
+### ChatGPT (OpenAI) — *Generalist with Ephemeral Execution*
+* **Developer Fit:** Outstanding for rapid code generation, architecture planning, and single-session debugging in "Work" mode via its virtual computer environment.
+* **Muse Key Differentiator:** ChatGPT's VM environment is dynamically spun up per task/session. In contrast, Muse provides a persistent, always-on Linux environment with background subagents that continue executing builds, long test suites, and git worktree tasks even while the developer is offline.
 
-### OpenClaw
-* **Features:** An open-source framework for personal AI agents created by Peter Steinberger. Steinberger notably relocated to the US and joined OpenAI in early 2026, citing that European regulations were stifling AI development.
-* **Agent Capabilities:** Features a messaging-first interface, interacting autonomously with users through platforms like WhatsApp, Telegram, and Discord. It can execute shell commands, manage files, operate on schedules, and remember context across sessions.
-* **Infrastructure & Models:** Because OpenClaw is a framework and not a model itself, users self-host it on their own machines and orchestrate their preferred backend models (such as GPT, Claude, Gemini, or local open-weights models). The specific system requirements (like VRAM) and performance limits depend entirely on the model the user chooses to plug into the framework. Free software gives full data control, but the user is completely responsible for setup, security, and hardware infrastructure.
+### Gemini (Google) — *Enterprise Workspace & Multi-Model Routing*
+* **Developer Fit:** Strong for enterprise dev teams deeply integrated into Google Workspace. Features "coworker agents" with dedicated `@agents.company.com` identities and automated audit logging.
+* **Muse Key Differentiator:** Gemini focuses on goal-driven enterprise objectives and routes tasks across Gemini and Anthropic Claude models in cloud enterprise settings. Muse prioritizes local terminal workflows, hands-on bash execution, and parallel git branch management for individual software engineers.
+
+### OpenClaw — *Self-Hosted Custom Dev Framework*
+* **Developer Fit:** An open-source agent framework (created by Peter Steinberger) that allows developers to self-host and plug in local or remote LLMs (GPT, Claude, Gemini, or local models).
+* **Muse Key Differentiator:** OpenClaw provides maximum privacy, full terminal control via messaging apps (WhatsApp, Discord), and complete data ownership, but requires developers to manually build and secure their own sandbox infrastructure. Muse delivers a managed, zero-setup persistent Linux dev sandbox out of the box.
+
+## Video Narrative & Scripting Directions
+
+*(Framework to tie the research together for video production)*
+
+1. **The Hook (Paradigm Shift):** Contrast traditional "Chatbot AI" (copy-pasting snippets into a web browser) with "Agentic Developer AI" (an AI engineer living in your terminal, running bash commands, and managing git branches).
+2. **Key Visual B-Roll Moments:** 
+   * Demonstrating Muse launching multiple parallel subagents in separate git worktrees (e.g., Agent 1 refactoring APIs, Agent 2 writing integration tests, Agent 3 building UI components) without touching the main branch.
+   * Showing Muse running automated tests inside its dedicated Linux machine, reading the test failures, and iterating until the build succeeds.
+3. **The Comparative Showdown:** 
+   * **Muse:** Managed persistent Linux box + multi-agent git worktree parallelization.
+   * **ChatGPT Work:** Ephemeral task-based VM for session debugging.
+   * **Gemini Agent:** Enterprise cloud coworker with audit trails.
+   * **OpenClaw:** DIY self-hosted power for local model enthusiasts.
