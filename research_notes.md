@@ -28,6 +28,49 @@ Investigation of Meta's personal AI agent 'Muse' (and Muse Code), focusing speci
 * **Developer Fit:** An open-source agent framework (created by Peter Steinberger) that allows developers to self-host and plug in local or remote LLMs (GPT, Claude, Gemini, or local models).
 * **Muse Key Differentiator:** OpenClaw provides maximum privacy, full terminal control via messaging apps (WhatsApp, Discord), and complete data ownership, but requires developers to manually build and secure their own sandbox infrastructure. Muse delivers a managed, zero-setup persistent Linux dev sandbox out of the box.
 
+## **AI Coding Risks and Security**
+
+### **1. Why AI Coding Security Matters**
+
+AI coding agents like Meta's Muse can do more than generate code. Depending on their permissions, they may read files, execute terminal commands, modify projects, and interact with external services. These capabilities can improve productivity but also introduce new security risks.
+
+### **2. Key Security Risks**
+
+- **Prompt Injection:** Malicious instructions hidden in files, webpages, or project documentation could manipulate an AI agent into performing unintended actions.
+
+- **Insecure Code Generation:** AI-generated code may contain bugs, security vulnerabilities, or inadequate input validation. Developers must review and test code before using it in production.
+
+- **Data and Credential Exposure:** If an AI agent accesses API keys, passwords, or private source code, inadequate security controls could expose sensitive information.
+
+- **Excessive Autonomy:** An agent with broad permissions could delete files, execute dangerous commands, or make unsafe changes without sufficient human oversight.
+
+### **3. Security Measures and Safeguards**
+
+Developers can reduce these risks by using the following security measures:
+
+- **Sandboxing:** Run AI agents in isolated environments to limit the impact of unsafe actions.
+
+- **Permission Controls:** Restrict access to files, terminal commands, and external services according to the task.
+
+- **Human Review:** Require developers to review important changes before merging code or deploying applications.
+
+- **Automated Testing:** Use unit tests, static analysis, and security scans to identify potential problems.
+
+- **Credential Protection:** Keep passwords, API keys, and other secrets out of source code and untrusted prompts.
+
+Meta's published security documentation describes protective measures intended to reduce risks associated with Muse. However, security safeguards cannot guarantee that every attack or coding error will be prevented.
+
+### **4. Why This Matters for Muse**
+
+Muse's ability to execute tasks within a development environment makes security an important factor when evaluating its usefulness. Developers must consider not only how quickly an AI agent completes a task, but also what permissions it has and whether its changes are safe.
+
+The key takeaway is that AI coding agents should assist developers rather than replace security reviews and human responsibility.
+
+
+
+
+
+
 ## Video Narrative & Scripting Directions
 
 *(Framework to tie the research together for video production)*
