@@ -13,7 +13,7 @@ In September 2026, Meta launched **Muse**, a personal AI agent that works on a u
 We chose it because it shows how software is moving from tools that respond to agents that act, and it raises real questions about privacy and trust in AI.
 
 ## Video
-[YouTube link: (to be added)](https://youtu.be/QMulGvbmhkQ)
+[YouTube link:](https://youtu.be/QMulGvbmhkQ)
 
 ## Repository Contents
 - `research_notes.md`: research notes and draft write-up
